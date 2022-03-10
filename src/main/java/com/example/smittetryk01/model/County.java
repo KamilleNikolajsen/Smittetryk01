@@ -2,9 +2,7 @@ package com.example.smittetryk01.model;
 
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class County {
@@ -15,27 +13,50 @@ public class County {
     private String name;
     private String href;
 
-    public String getCountyCode() {
-        return countyCode;
-    }
+    @ManyToOne
+    @JoinColumn(name="regioncode")
+    private Region region;
 
-    public void setCountyCode(String countyCode) {
-        this.countyCode = countyCode;
-    }
 
-    public String getName() {
-        return name;
-    }
+  public String getCountyCode() {
+    return countyCode;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setCountyCode(String countyCode) {
+    this.countyCode = countyCode;
+  }
 
-    public String getHref() {
-        return href;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setHref(String href) {
-        this.href = href;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getHref() {
+    return href;
+  }
+
+  public void setHref(String href) {
+    this.href = href;
+  }
+
+  public Region getRegion() {
+    return region;
+  }
+
+  public void setRegion(Region region) {
+    this.region = region;
+  }
+
+  @Override
+  public String toString() {
+    return "County{" +
+      "countyCode='" + countyCode + '\'' +
+      ", name='" + name + '\'' +
+      ", href='" + href + '\'' +
+      ", region=" + region +
+      '}';
+  }
 }
